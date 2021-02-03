@@ -1,9 +1,13 @@
 package com.uni.due.charts;
 
-public class Scatterplot extends Chart{
+public class Scatterplot implements Chart{
+    @Override
+    public void getTitle() {
+        System.out.println("Scatterplot_Chart!!");
+    }
 
-    public void chart_info_out()
-    {
-        System.out.println("scatterplot_chart!!");
+    @Override
+    public void analyse() {
+        System.out.println("Scatterplot analysing!!");
     }
 }
