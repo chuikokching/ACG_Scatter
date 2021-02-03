@@ -7,8 +7,11 @@
 <html lang="en">
 <head>
     <title>ACG_Portal</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="template.css">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="CSS/template.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 <body>
 <div id="wrapper">
@@ -37,7 +40,12 @@
             </div>
         </nav>
         <div class="main_body">
-            googogogogogoo
+            <div id="scatter_chart" class="chart">
+                <script src="Javascript/scatterplot.js"></script>
+                <div id="component">test</div>
+            </div>
+
+            <div class="result">result</div>
         </div>
     </div>
     <!-- Definition von Footer -->
