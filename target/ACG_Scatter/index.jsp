@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/template.css">
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -27,9 +27,9 @@
     <div class="full-body-container">
         <nav>
             <div class="nav">
-                <a><button class="nav_btn">Scatterplot</button></a>
-                <a><button class="nav_btn">Scatterplot</button></a>
-                <a><button class="nav_btn">Scatterplot</button></a>
+                <a><button id="infos" class="nav_btn">Informations</button></a>
+                <a><button id="submit"class="nav_btn">Submit</button></a>
+                <a><button id="upload"class="nav_btn">Upload</button></a>
                 <a><button class="nav_btn">Scatterplot</button></a>
                 <a><button class="nav_btn">Scatterplot</button></a>
                 <a><button class="nav_btn">Scatterplot</button></a>
@@ -51,7 +51,7 @@
     <!-- Definition von Footer -->
     <footer>
         <div id="footer">
-            <p>Bachelor-Arbeit | Guozheng Xu | Matrikelnummer: 3025929| Angewandte Informatik - Systems Engineering (B.Sc.)</p>
+            <p>Bachelor-Arbeit | Guozheng Xu | Matrikelnummer: 3025929 | Angewandte Informatik - System Engineering (B.Sc.)</p>
         </div>
     </footer>
 </div>
