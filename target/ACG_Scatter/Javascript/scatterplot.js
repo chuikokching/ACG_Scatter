@@ -64,6 +64,14 @@ g_body.append("g")
     .attr("class", "axis y-axis")
     .call(d3.axisLeft(y));
 
+// load data
+d3.csv("scatterplot.csv").then(function(data) {
+    console.log(data);
+    console.log("test for csv");
+});
+
+console.log("test for csv!!!!!!!!")
+
 //Submit function
 $("#submit").on("click",function(){
   $.ajax({
