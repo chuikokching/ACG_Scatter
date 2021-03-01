@@ -4,16 +4,6 @@ var margin = {top: 50, right: 50, bottom: 60, left: 70},
     width = 1050 - margin.left - margin.right,
     height = 700 - margin.top - margin.bottom;
 
-var chart_title="Title of Scatterplot Chart";
-var x_axis_title="Number of Students";
-var y_axis_title="Number of Facutly Members";
-
-var jsonList={
-  "chart_title":chart_title,
-  "x_axis_title":x_axis_title,
-  "y_axis_title":y_axis_title,
-  "array":[1,2,3,4,5,6,7,8,9,10]
-}
 
 var svg=d3.select("#scatter_chart")
     .append("svg")
@@ -28,7 +18,7 @@ var g_title= svg.append("g")
     .append("text")
     .attr("font-size", 30)
     .attr("fill","#1f375a")
-    .text(chart_title);
+    //.text(chart_title);
 
 //title of x_axis
 var g_x_axis_title = svg.append("g")
@@ -36,7 +26,7 @@ var g_x_axis_title = svg.append("g")
     .append("text")
     .attr("font-size", 18)
     .attr("fill","#1f375a")
-    .text(x_axis_title)
+   // .text(x_axis_title)
 
 //title of y_axis
 var g_y_axis_title = svg.append("g")
@@ -45,16 +35,33 @@ var g_y_axis_title = svg.append("g")
     .attr("font-size", 18)
     .attr("transform", "rotate(-90)")
     .attr("fill","#1f375a")
-    .text(y_axis_title)
+  //  .text(y_axis_title)
 
 // add the tooltip area to the webpage
 var tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
+var chart_title="Title of Scatterplot Chart";
+var x_axis_title="";
+var y_axis_title="";
+
 // load data
 d3.csv("https://gist.githubusercontent.com/chuikokching/5d7ca6f15ae22fc95db6b7ffcdc0efa9/raw/1a8c6edc91c28e9351dfe13eb3ad2303866b64a9/ScatterPlot1.csv").then(function(data) {
-    console.log(data[0]);
+    console.log(data.columns[0]+ " "+data.columns[1]+ " "+data.columns[2]);
+
+
+    //set title of x and y axis
+    x_axis_title = data.columns[1];
+    y_axis_title = data.columns[2];
+
+    console.log(x_axis_title + " test of title in csv "+y_axis_title);
+
+    g_title.text(chart_title);
+    g_x_axis_title.text(x_axis_title);
+    g_y_axis_title.text(y_axis_title);
+
+
     // setup x - use +d to change string (from CSV) into number format
     var xValue = function(d) { return +d["numStudents"];}, // data -> value
         x=d3.scaleLinear().range([0,width]),     // value -> display, length of x-axis
@@ -93,7 +100,6 @@ d3.csv("https://gist.githubusercontent.com/chuikokching/5d7ca6f15ae22fc95db6b7ff
         .attr("cy", yMap)
         .style("fill", function(d) { return colors(cValue(d)); })
 
-
         // tooltip
         .on("mouseover", function(d) {
             tooltip.transition()
@@ -111,12 +117,20 @@ d3.csv("https://gist.githubusercontent.com/chuikokching/5d7ca6f15ae22fc95db6b7ff
         });
 });
 
+
 $("#infos").on("click",function(){
 
 });
 
 //Submit function
 $("#submit").on("click",function(){
+    var jsonList={
+        "chart_title":chart_title,
+        "x_axis_title":x_axis_title,
+        "y_axis_title":y_axis_title,
+        "array":[1,2,3,4,5,6,7,8,9,10]
+    };
+
   $.ajax({
     type :"POST",
     url  :"/ACG/Demo",
@@ -126,7 +140,7 @@ $("#submit").on("click",function(){
     success :function (data) {
 
       console.log(data);
-      $(".result").html("Chart_title: "+data.chart_title+"<br/>"+"X_axis: "+data.x_axis_title+"<br/>"+data.y_axis_title+"<br/>"+data.array);
+      $(".result").html("Chart_title: "+data.chart_title+"<br/>"+"X_axis_title: "+data.x_axis_title+"<br/>"+"Y_axis_title: "+data.y_axis_title+"<br/>"+"Dataset: "+data.array);
          Swal.fire({
             icon: 'success',
             title: 'Submit',

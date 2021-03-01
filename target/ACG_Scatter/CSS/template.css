@@ -51,10 +51,11 @@ body {
 	background-color: #1f375a;
 	border-color: #172841;
 }
+
 .uni{
 	height: 60px;
 	width: 170px;
-	top:10px;
+	top: 10px;
 	left: 20px;
 	position: absolute;
 }
@@ -113,6 +114,7 @@ body {
 	margin-left: 220px;
     margin-top: 30px;
 }
+
 .chart{
 	background-color: #efefef;
 	height: 800px;
@@ -122,13 +124,16 @@ body {
 	overflow: auto;
 	border: 2px solid #1f375a;
 }
+
 .result{
 	background-color: #efefef;
 	height: 800px;
 	width: 600px;
 	float: left;
 	overflow: auto;
+	font-family: calibri;
 	border: 2px solid #1f375a;
+	color: #1f375a
 }
 .axis {font: 14px calibri;}
 .label {font: 16px calibri;}
@@ -140,6 +145,8 @@ body {
     bottom: 0px;
     left: 0px;
 }
+
+
 /*空格选择器 footer里面的所有p 包含footer里面嵌入的其他div的p*/
 #footer p {
     color: #efefef;

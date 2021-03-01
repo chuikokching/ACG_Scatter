@@ -20,17 +20,24 @@
             height: 73px;
             background: #f2f2f2;
             pointer-events: none;}
+        .container-fluid{
+            height: 60px;
+            width: 450px;
+            top:23px;
+            left: 250px;
+            position: absolute;
+            font-size: 30px;
+            font-weight: bold;
+            font-family: calibri;
+            color: white;
+        }
     </style>
 </head>
 <body>
 <div id="wrapper">
     <div class="top-navigator navbar navbar-default">
-        <div class="uni">
-            <a href="https://www.uni-due.de/" title="uni-due"></a>
-        </div>
-        <div class="container-fluid">
-            ScatterPlot Analysis Tool
-        </div>
+        <div class="uni"><a href="https://www.uni-due.de/" title="uni-due"></a></div>
+        <div class="container-fluid">Scatter   Plot   Chart   Analysis   Tool</div>
     </div>
     <div class="split_line"></div>
     <!-- Definition von Body -->
@@ -40,10 +47,6 @@
                 <a><button id="infos" class="nav_btn">Informations</button></a>
                 <a><button id="submit"class="nav_btn">Submit</button></a>
                 <a><button id="upload"class="nav_btn">Upload</button></a>
-                <a><button class="nav_btn">Scatterplot</button></a>
-                <a><button class="nav_btn">Scatterplot</button></a>
-                <a><button class="nav_btn">Scatterplot</button></a>
-                <a><button class="nav_btn">Scatterplot</button></a>
                 <a><button class="nav_btn">Scatterplot</button></a>
                 <a><button class="nav_btn">Scatterplot</button></a>
                 <a><button class="nav_btn">Scatterplot</button></a>
