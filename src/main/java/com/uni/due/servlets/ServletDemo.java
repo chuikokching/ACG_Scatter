@@ -18,7 +18,8 @@ import java.io.PrintWriter;
 public class ServletDemo extends HttpServlet {
 
     /*
-    //请求处理的核心方法 无论get还是post都会被处理 如果被重写则不会继续分发到get和post当中
+     *The core method of request processing, either get or post will be processed. If it is rewritten, it will not continue to be distributed to get and post.
+     *
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //String name=request.getParameter("name");
         String name="jeff";

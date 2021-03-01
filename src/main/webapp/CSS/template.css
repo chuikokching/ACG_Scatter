@@ -140,6 +140,8 @@ body {
     bottom: 0px;
     left: 0px;
 }
+
+
 /*空格选择器 footer里面的所有p 包含footer里面嵌入的其他div的p*/
 #footer p {
     color: #efefef;

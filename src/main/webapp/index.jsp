@@ -12,6 +12,15 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <style>
+        .tooltip {
+            position: absolute;
+            width: 110px;
+            height: 73px;
+            background: #f2f2f2;
+            pointer-events: none;}
+    </style>
 </head>
 <body>
 <div id="wrapper">
@@ -20,6 +29,7 @@
             <a href="https://www.uni-due.de/" title="uni-due"></a>
         </div>
         <div class="container-fluid">
+            ScatterPlot Analysis Tool
         </div>
     </div>
     <div class="split_line"></div>
@@ -42,7 +52,7 @@
         <div class="main_body">
             <div id="scatter_chart" class="chart">
                 <script src="Javascript/scatterplot.js"></script>
-                <div id="component">test</div>
+                <div id="component"></div>
             </div>
 
             <div class="result">result</div>

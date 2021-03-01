@@ -47,30 +47,73 @@ var g_y_axis_title = svg.append("g")
     .attr("fill","#1f375a")
     .text(y_axis_title)
 
-
-
-//length of x-axis
-var x=d3.scaleLinear().range([0,width]);
-//length of y-axis
-var y=d3.scaleLinear().range([height, 0]);
-
-// Add the x-axis.
-g_body.append("g")
-    .attr("class", "axis x-axis")
-    .attr("transform", "translate(0," + height + ")") // move axis to bottom of chart
-    .call(d3.axisBottom(x));
-// Add the y-axis.
-g_body.append("g")
-    .attr("class", "axis y-axis")
-    .call(d3.axisLeft(y));
+// add the tooltip area to the webpage
+var tooltip = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
 
 // load data
-d3.csv("scatterplot.csv").then(function(data) {
-    console.log(data);
-    console.log("test for csv");
+d3.csv("https://gist.githubusercontent.com/chuikokching/5d7ca6f15ae22fc95db6b7ffcdc0efa9/raw/1a8c6edc91c28e9351dfe13eb3ad2303866b64a9/ScatterPlot1.csv").then(function(data) {
+    console.log(data[0]);
+    // setup x - use +d to change string (from CSV) into number format
+    var xValue = function(d) { return +d["numStudents"];}, // data -> value
+        x=d3.scaleLinear().range([0,width]),     // value -> display, length of x-axis
+        xMap = function(d) { return x(xValue(d));}; // data -> display
+
+    // setup y - use +d to change string into number format
+    var yValue = function(d) { return +d["Faculty"];}, // data -> value
+        y = d3.scaleLinear().range([height, 0]),    // value -> display, length of y-axis
+        yMap = function(d) { return y(yValue(d));}; // data -> display
+
+    // don't want dots overlapping axis, so add in buffer to data domain
+    x.domain([d3.min(data, xValue)-1, d3.max(data, xValue)+1]);
+    y.domain([0, d3.max(data, yValue)+1]);
+
+    // Add the x-axis.
+    g_body.append("g")
+        .attr("class", "axis x-axis")
+        .attr("transform", "translate(0," + height + ")") // move axis to bottom of chart
+        .call(d3.axisBottom(x));
+    // Add the y-axis.
+    g_body.append("g")
+        .attr("class", "axis y-axis")
+        .call(d3.axisLeft(y));
+
+    //create color scale
+    var cValue = function(d) { return d['country'];},
+        colors = d3.scaleOrdinal(d3.schemePaired);
+
+    // draw dots
+    g_body.selectAll(".dot")
+        .data(data)
+        .enter().append("circle")
+        .attr("class", "dot")
+        .attr("r", 3)
+        .attr("cx", xMap)
+        .attr("cy", yMap)
+        .style("fill", function(d) { return colors(cValue(d)); })
+
+
+        // tooltip
+        .on("mouseover", function(d) {
+            tooltip.transition()
+                .duration(200)         // ms delay before appearing
+                .style("opacity", .8); // tooltip appears on mouseover
+            tooltip.html(d["Number of Students"] + "<br/> " + d.numStudents + "<br/>(" + xValue(d)
+                + ", " + yValue(d) + ")")
+                .style("left", (d3.event.pageX + 10) + "px")  // specify x location
+                .style("top", (d3.event.pageY - 28) + "px");  // specify y location
+        })
+        .on("mouseout", function(d) {
+            tooltip.transition()
+                .duration(500)
+                .style("opacity", 0); // disappear on mouseout
+        });
 });
 
-console.log("test for csv!!!!!!!!")
+$("#infos").on("click",function(){
+
+});
 
 //Submit function
 $("#submit").on("click",function(){
